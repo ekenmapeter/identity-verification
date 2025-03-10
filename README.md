@@ -1,67 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+To install the Identity Verification project from GitHub using Laravel, follow the steps below:
 
-## About Laravel
+## Prerequisites:
+Before you begin, make sure you have the following installed on your machine:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **PHP** (preferably version 7.4 or higher)
+2. **Composer** (a dependency manager for PHP)
+3. **MySQL** or any other relational database (for storing application data)
+4. **Node.js** (for compiling frontend assets, if applicable)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Steps to Install the Identity Verification Project
 
-## Learning Laravel
+### 1. Clone the GitHub Repository
+First, you need to clone the project repository to your local machine.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Open a terminal/command prompt and run the following command:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/ekenmapeter/identity-verification.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Navigate into the project directory:
 
-## Laravel Sponsors
+```bash
+cd identity-verification
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Install PHP Dependencies
+Once inside the project directory, you need to install the PHP dependencies required by the Laravel application. You can do this using Composer:
 
-### Premium Partners
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+This command will install all the required PHP libraries and dependencies specified in the `composer.json` file.
 
-## Contributing
+### 3. Set Up the Environment File
+Laravel uses an `.env` file to store environment-specific configuration options (like database credentials, application key, etc.).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Copy the `.env.example` file to `.env`:
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Generate Application Key
+Laravel requires an application key for encryption. To generate this key, run the following command:
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+This command will generate a new application key and automatically update your `.env` file.
 
-## License
+### 5. Configure the Database
+Open the `.env` file in a text editor and configure the database connection. Set the following values according to your database settings:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# identity-verification
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
+
+Ensure that you have created a database in MySQL for this project.
+
+### 6. Run Migrations
+Next, run the Laravel migrations to set up the database tables:
+
+```bash
+php artisan migrate
+```
+
+This command will create the necessary tables in your database based on the migration files in the `database/migrations` folder.
+
+### 7. Install Frontend Dependencies
+If the project uses any frontend assets (like JavaScript and CSS), install the necessary Node.js dependencies:
+
+```bash
+npm install
+```
+
+### 8. Compile Assets
+If the project has any assets that need to be compiled (e.g., CSS, JavaScript), run:
+
+```bash
+npm run dev
+```
+
+This will compile the assets for local development. For production, you can run `npm run production`.
+
+### 9. Serve the Application
+Now that everything is set up, you can run the Laravel development server to test the application:
+
+```bash
+php artisan serve
+```
+
+The application will be available at `http://127.0.0.1:8000` (or the URL shown in your terminal).
+
+---
+
+## Conclusion
+Your Identity Verification Laravel project is now installed and running locally! You can start interacting with the application by navigating to the provided URL in your browser.
+
+---
+
+If you face any issues during installation, check the project documentation or raise an issue in the GitHub repository for assistance.
